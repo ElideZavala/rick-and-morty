@@ -1,0 +1,25 @@
+$font-sizes: (
+  'font-size-xxsmall'  : calc(6px + .3vw),
+  'font-size-xsmall'   : calc(7px + .3vw),
+  'font-size-small'    : calc(8px + .3vw),
+  'font-size-regular'  : calc(8px + .6vw),
+  'font-size-xregular' : calc(8px + .8vw),
+  'font-size-medium'   : calc(8px + .9vw),
+  'font-size-xmedium'  : calc(10px + 1vw),
+  'font-size-xxmedium' : calc(13px + 1vw),
+  'font-size-large'    : calc(1rem + 1vw),
+  'font-size-xlarge'   : calc(1rem + 2vw),
+  'font-size-xxlarge'  : calc(1.2rem + 3vw),
+);
+
+/********  Return Value Of Font-Size  *********/
+@function font-size($font-size-style) {
+  @return map-get($font-sizes, $font-size-style)
+}
+
+;
+/********  Set Font-Size & Font-Weight  *********/
+@mixin font($font-size-style, $font-weight-style: 500) {
+  font-size: font-size($font-size-style);
+  font-weight: $font-weight-style;
+}

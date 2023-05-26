@@ -1,0 +1,31 @@
+/* ------- Font-Sizes For Rick and Morty -------*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+
+
+%backgroundImage {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+%none {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+%centerGrid {
+  display: grid;
+  place-content: center;
+}
+
+%centerFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%gradientRed {
+  background: linear-gradient(to right, $red-primary, $red-secondary);
+}
+

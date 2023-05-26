@@ -1,0 +1,162 @@
+$break-points: (
+  "break-point-small-mini": 350px,
+  "break-point-small": 400px,
+  "break-point-phone": 499px,
+  "break-point-phone-minh": 570px,
+  "break-point-phone-maxh": 590px,
+  "break-point-phone-medium": 600px,
+  "break-point-phone-big": 700px,
+  "break-point-table7": 750px,
+  "break-point-tablet": 800px,
+  "break-point-tablet-big": 900px,
+  "break-point-laptop": 1000px,
+  "break-point-laptop-big": 1100px,
+  "break-point-desktop": 1200px,
+  "break-point-desktop-big": 1258px,
+  "break-point-desktop-ultra": 1500px,
+);
+
+@function break-point($break-point-limit) {
+  @return map-get($break-points, $break-point-limit)
+}
+
+;
+
+// *-*-*-*-*-*-*-*-*-*- The 1500px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-
+@mixin media-desktop-lg-exramax {
+  @media screen and (min-width: break-point(break-point-desktop-ultra)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 1258px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-
+@mixin media-desktop-lg-max {
+  @media screen and (min-width: break-point(break-point-desktop-big)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The min 1200px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-desktop-lg-min {
+  @media screen and (min-width: break-point(break-point-desktop)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 1200px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-desktop-lg {
+  @media screen and (max-width: break-point(break-point-desktop)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 1200px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-desktop {
+  @media screen and (max-width: break-point(break-point-desktop)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 1100px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-laptop-big {
+  @media screen and (max-width: break-point(break-point-laptop-big)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 1000px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-laptop {
+  @media screen and (max-width: break-point(break-point-laptop)) {
+    @content;
+  }
+}
+
+
+// *-*-*-*-*-*-*-*-*-*- The 900px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-tablet-big {
+  @media screen and (max-width: break-point(break-point-tablet-big)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 800px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-tablet {
+  @media screen and (max-width: break-point(break-point-tablet)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 750px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-table7 {
+  @media screen and (max-width: break-point(break-point-table7)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 700px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-phone-big {
+  @media screen and (max-width: break-point(break-point-phone-big)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 600px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-phone-medium {
+  @media screen and (max-width: break-point(break-point-phone-medium)) {
+    @content;
+  }
+}
+
+@mixin media-tablet-horizontal {
+  @media screen and (min-height: break-point(break-point-phone-medium)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 590px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-phone-max {
+  @media screen and (max-height: break-point(break-point-phone-maxh)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 500px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+
+@mixin media-phone {
+  @media screen and (max-width: break-point(break-point-phone)) {
+    @content;
+  }
+}
+
+@mixin media-phone-horizontal {
+  @media screen and (max-height: break-point(break-point-phone)) {
+    @content;
+  }
+}
+
+@mixin media-phone-exact {
+  @media screen and (max-width: break-point(break-point-phone)) and (max-height: break-point(break-point-table7)) {
+    @content;
+  }
+}
+
+
+// *-*-*-*-*-*-*-*-*-*- The 400px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-phone-small {
+  @media screen and (max-width: break-point(break-point-small)) {
+    @content;
+  }
+}
+
+@mixin media-phone-small-horizontal {
+  @media screen and (max-height: break-point(break-point-small)) {
+    @content;
+  }
+}
+
+// *-*-*-*-*-*-*-*-*-*- The 500px * 570px Mark Break Point *-*-*-*-*-*-*-*-*-*-*-*-*
+@mixin media-phone-mini {
+  @media screen and (min-width: break-point(break-point-small-mini)) and (min-height: break-point(break-point-phone-big)) {
+    @content;
+  }
+}

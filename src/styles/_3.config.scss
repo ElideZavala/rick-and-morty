@@ -1,0 +1,22 @@
+li {
+  list-style: inside;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  letter-spacing: .5px;
+  color: inherit;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  caret-color: transparent;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  color: inherit;
+}
