@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-// import Observable from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DashboardService {
-  private itemsPerPage = 10;
-  private apiUrl = environment.API;
+  private itemsPerPage: number = 10;
+  private apiUrlCharacter: string = environment.API.CHARACTER;
+  private apiUrlCharacters: string = environment.API.CHARACTER_PAGE;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  // getCharacters(page: number): Observable<any> {
-  //   const url = `${this.apiUrl}/character/?page=${page}`;
-  //   return this.http.get<any>(url);
-  // }
+  getCharacters(page: number): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrlCharacters}${page}`, {
+        observe: 'response',
+      })
+      .pipe(catchError((error) => throwError(error)));
+  }
 
-  async getCharacters(page: number): Promise<any> {
-    try {
-      const response = await this.http.get<any>(
-        `${this.apiUrl.CHARACTERS}?page=${page}&count=${this.itemsPerPage}`, 
-            { observe: 'response' }
-        ).toPromise();
-      return response;
-    } catch (error) {
-      throw error;
-    }
+  getCharacter(id: number): Observable<any> {
+    return this.http
+      .get<any>(`${this.apiUrlCharacter}${id}`, {
+        observe: 'response',
+      })
+      .pipe(catchError((error) => throwError(error)));
   }
 }

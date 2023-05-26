@@ -3,6 +3,7 @@ import { DashboardService } from '../../services/dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Characters } from 'src/interfaces/characters.model';
 
 @Component({
   selector: 'list-characters',
@@ -11,25 +12,36 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ListCharactersComponent implements OnInit {
 
-  characters: any[] = [];
   dataSource!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['name', 'species', 'gender', 'status'];
-  @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  displayedColumns: string[] = ['image','name','species', 'gender', 'created', 'status', 'detail'];
+  characters: Characters[] = [];
+  length: number = 0;
+  pageSize: number = 10;
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService ) { }
 
   ngOnInit(): void {
-    this.getCharacters(1);
+    this.getCharacters();
   }
 
-  async getCharacters(page: number) { 
-
-    const data = await this.dashboardService.getCharacters(page);
-    this.dataSource = new MatTableDataSource(data.body.results);
-    console.log(this.dataSource);
+  getCharacters(page: number = 1): void {
+    this.dashboardService.getCharacters(page).subscribe((data: any) => {
+      this.characters = data.body.results;
+      // this.length = data.body.results.length;
+      this.length = data.body.info.count;
+      this.dataSource = new MatTableDataSource(this.characters );
+      this.dataSource.sort = this.sort;
+    });
   }
 
+  onPageChange(event: any): void  {
+    const pageIndex = event.pageIndex;
+    this.getCharacters(pageIndex + 1);
+  }
+
+  goDetails(id: number): void {
+    console.log(id);
+  }
 }

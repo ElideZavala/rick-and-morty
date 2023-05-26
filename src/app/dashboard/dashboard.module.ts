@@ -4,6 +4,8 @@ import { ListCharactersComponent } from './components/list-characters/list-chara
 import { CharacterComponent } from './view/character/character.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { MaterialModule } from '../modules/material/material.module';
+import { CreatedDatePipe } from '../../pipes/created-date.pipe';
+import { DashboardRoutingModule } from './dashboard.routing';
 
 
 
@@ -11,11 +13,13 @@ import { MaterialModule } from '../modules/material/material.module';
   declarations: [
     ListCharactersComponent,
     CharacterComponent,
-    DashboardComponent
+    DashboardComponent,
+    CreatedDatePipe
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    DashboardRoutingModule
   ], 
   exports: [
     DashboardComponent

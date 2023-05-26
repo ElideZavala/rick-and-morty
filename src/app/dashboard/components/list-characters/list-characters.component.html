@@ -1,47 +1,184 @@
 <main class="table">
     <section class="table__search"></section>
-    <section class="table__list"> 
-        <table mat-table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="name" sticky>
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre</th>
-                <td mat-cell *matCellDef="let row" >
-                    <div class="huellita-name">
-                        <img [src]="row.image">
-                        <span>{{row.name}}</span>
-                    </div>
-                </td>
-            </ng-container>
+    <section class="table__list">
+        <div>
+            <table
+                mat-table
+                [dataSource]="dataSource"
+                matSort
+            >
+            <ng-container
+                    matColumnDef="image"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Avatar
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <img [src]="row.image">
+                        </div>
+                    </td>
+                </ng-container>
+                <ng-container
+                    matColumnDef="name"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Nombre
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <span>{{row.name}}</span>
+                        </div>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="species" sticky>
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Especie</th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="huellita-name">
-                        <span>{{row.species}}</span>
-                    </div>
-                </td>
-            </ng-container>
+                <ng-container
+                    matColumnDef="species"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Especie
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <span>{{row.species}}</span>
+                        </div>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="gender" sticky>
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Genero</th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="huellita-name">
-                        <span>{{row.gender}}</span>
-                    </div>
-                </td>
-            </ng-container>
+                <ng-container
+                    matColumnDef="gender"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Genero
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <span>{{row.gender}}</span>
+                        </div>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="status" sticky>
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus</th>
-                <td mat-cell *matCellDef="let row">
-                    <div class="huellita-name">
-                        <span>{{row.status}}</span>
-                    </div>
-                </td>
-            </ng-container>
-            
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            
-        </table>
+                <ng-container
+                    matColumnDef="created"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Creado
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <span>{{row.created | createdDate}}</span>
+                        </div>
+                    </td>
+                </ng-container>
+                
+                <ng-container
+                    matColumnDef="status"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Estatus
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <ng-container class="huellita-name" 
+                            *ngTemplateOutlet="row.status !== 'unknown' ? trueTemplate : falseTemplate">
+                        </ng-container>
+                        <ng-template #trueTemplate>
+                            <span >{{row.status}}</span>
+                        </ng-template>
+                        <ng-template #falseTemplate>
+                            <span>Sin Estatus</span>
+                        </ng-template>
+                    </td>
+                </ng-container> 
+
+                 <ng-container
+                    matColumnDef="detail"
+                    sticky
+                >
+                    <th
+                        mat-header-cell
+                        *matHeaderCellDef
+                        mat-sort-header
+                    >
+                        Detalles
+                    </th>
+                    <td
+                        mat-cell
+                        *matCellDef="let row"
+                    >
+                        <div class="huellita-name">
+                            <button (click)="goDetails(row.id)">Detalles</button>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <tbody>
+                    <tr
+                        mat-header-row
+                        *matHeaderRowDef="displayedColumns"
+                    ></tr>
+                    <tr
+                        mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                    ></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table__list__paginator">
+            <mat-paginator
+                [pageSize]="pageSize"
+                (page)="onPageChange($event)"
+                [length]="length"
+            >
+            </mat-paginator>
+        </div>
     </section>
-</main>
+</main> 
