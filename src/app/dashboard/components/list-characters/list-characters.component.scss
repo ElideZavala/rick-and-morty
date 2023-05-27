@@ -1,0 +1,56 @@
+@import 'src/styles/App.scss';
+
+.container { 
+    width: 100vw; 
+    color: $blue-primary;
+
+    &__search {
+        @include font('font-size-regular');
+        margin: 2rem 0;
+        text-align: center;
+    }
+}
+
+.avatar { 
+    @extend %backgroundImage;
+    margin-right: 1rem;
+    
+    img {
+        width: 10vmin;
+        border-radius:50%
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    margin: 2rem 0;
+}
+
+.details { 
+    &__button { 
+        @include buttonStyle(3px 1rem);
+        cursor: pointer;
+    }
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: 0;
+    border: 1px solid $blue-secondary;
+    border-radius: 8px;
+
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+::ng-deep .mat-form-field-label {
+    margin-left: 1rem;
+}
+
+::ng-deep .mat-input-element.mat-form-field-autofill-control{
+    margin-left: 1rem ;
+}

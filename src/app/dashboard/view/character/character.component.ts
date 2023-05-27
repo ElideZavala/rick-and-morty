@@ -36,9 +36,12 @@ export class CharacterComponent implements OnInit {
   constructor(private dashboardService: DashboardService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.params.id;
-    console.log('this.id: ', this.id);
-    this.getCharacter(1);
+    const idCharacter = this.router.snapshot.params.id;
+    this.getCharacter(idCharacter);
+  }
+
+  closeButton(): void {
+    console.log('cerrar');
   }
 
   getCharacter(id: number): void {
@@ -47,5 +50,7 @@ export class CharacterComponent implements OnInit {
       console.log(this.character);
     });
   }
+
+  
 
 }

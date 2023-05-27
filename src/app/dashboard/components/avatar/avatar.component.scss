@@ -1,0 +1,11 @@
+@import 'src/styles/App.scss';
+
+.avatar { 
+    height: 100%;
+
+    img { 
+        @extend %backgroundImage;
+        border-radius: 2rem;
+        box-shadow: 0 0 10px 0 $red-secondary;
+    }
+}

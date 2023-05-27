@@ -1,20 +1,32 @@
-<main class="table">
-    <section class="table__search"></section>
-    <section class="table__list">
-        <div>
+<main class="container">
+    <section class="container__search">
+        <mat-form-field>
+            <mat-label>Buscar</mat-label>
+            <input
+                matInput
+                (keyup)="applyFilter($event)"
+                placeholder="Rick Sanchez"
+                #input
+            >
+        </mat-form-field>
+
+    </section>
+    <section class="container__list">
+        <div class="container__list--container">
             <table
+                class="table"
                 mat-table
                 [dataSource]="dataSource"
                 matSort
             >
-            <ng-container
+                <ng-container
+                    class="table__info"
                     matColumnDef="image"
                     sticky
                 >
                     <th
                         mat-header-cell
                         *matHeaderCellDef
-                        mat-sort-header
                     >
                         Avatar
                     </th>
@@ -22,8 +34,12 @@
                         mat-cell
                         *matCellDef="let row"
                     >
-                        <div class="huellita-name">
-                            <img [src]="row.image">
+                        <div class="avatar">
+                            <img
+                                [src]="row.image"
+                                [alt]="row.name"
+                                title="avatar de {{row.name}}"
+                            >
                         </div>
                     </td>
                 </ng-container>
@@ -34,7 +50,6 @@
                     <th
                         mat-header-cell
                         *matHeaderCellDef
-                        mat-sort-header
                     >
                         Nombre
                     </th>
@@ -110,7 +125,7 @@
                         </div>
                     </td>
                 </ng-container>
-                
+
                 <ng-container
                     matColumnDef="status"
                     sticky
@@ -126,19 +141,21 @@
                         mat-cell
                         *matCellDef="let row"
                     >
-                        <ng-container class="huellita-name" 
-                            *ngTemplateOutlet="row.status !== 'unknown' ? trueTemplate : falseTemplate">
+                        <ng-container
+                            class="huellita-name"
+                            *ngTemplateOutlet="row.status !== 'unknown' ? trueTemplate : falseTemplate"
+                        >
                         </ng-container>
                         <ng-template #trueTemplate>
-                            <span >{{row.status}}</span>
+                            <span>{{row.status}}</span>
                         </ng-template>
                         <ng-template #falseTemplate>
                             <span>Sin Estatus</span>
                         </ng-template>
                     </td>
-                </ng-container> 
+                </ng-container>
 
-                 <ng-container
+                <ng-container
                     matColumnDef="detail"
                     sticky
                 >
@@ -153,8 +170,10 @@
                         mat-cell
                         *matCellDef="let row"
                     >
-                        <div class="huellita-name">
-                            <button (click)="goDetails(row.id)">Detalles</button>
+                        <div class="details">
+                            <button 
+                                class="details__button"
+                            (click)="goDetails(row.id)">Detalles</button>
                         </div>
                     </td>
                 </ng-container>
@@ -181,4 +200,4 @@
             </mat-paginator>
         </div>
     </section>
-</main> 
+</main>

@@ -1,0 +1,14 @@
+@import 'src/styles/App.scss';
+
+.container {
+    overflow: hidden;
+
+    &__title {
+        @include font('font-size-large', 600);
+        color: $blue-primary;
+        text-align: center;
+        margin: 1rem 0;
+        text-decoration: dashed underline $blue-secondary;
+        text-shadow: 0 0 5px $blue-secondary;
+    }
+}

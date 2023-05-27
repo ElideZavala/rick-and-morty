@@ -1,0 +1,39 @@
+@mixin background-modal() {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-items: start;
+    justify-content: center;
+    background-color: $background-transparent;
+    backdrop-filter: blur(4px);
+    font-family: 'Poppins', sans-serif;
+    color: $blue-primary;
+    animation: transitionIn 0.75s;
+}
+
+@mixin modal-dialog($width, $height, $margin-top: 6vmin) {
+    width: $width;
+    height: $height;
+    margin-top: $margin-top;
+    border-radius: 1rem;
+    background-color: $white-primary;
+    text-align: center;
+    position: relative;
+}
+
+@mixin buttonStyle($padding, $margin: 0) {
+    @extend %none;
+    @extend %gradientRed;
+    color: $white-primary;
+    padding: $padding;
+    border-radius: 8px;
+    margin: $margin;
+    transition: all .5s ease-in-out;
+
+    &:hover { 
+        box-shadow: 0 0 10px $red-secondary;
+    }
+}

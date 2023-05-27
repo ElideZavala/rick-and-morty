@@ -1,2 +1,62 @@
-<p>character works!</p>
-<h1>Muestrate por favor</h1>
+<main class="container">
+    <section class="container__character">
+        <!-- <h1 class="container__title">{{character.name}}</h1> -->
+        <div class="container__character--details">
+            <button class="container__character--details__close" routerLink="/dashboard">
+                <mat-icon class="close-icon">close</mat-icon>
+            </button>
+            <div class="container__character--details__avatar">
+                <avatar
+                    [image]="character.image"
+                    [name]="character.image"
+                ></avatar>
+            </div>
+
+            <div class="container__character--details__biodata">
+                <div class="infoCharacter">
+                    <p>Nombre:</p>
+                    <span>{{character.name}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Estado:</p>
+                    <span>{{character.status}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Especie:</p>
+                    <span>{{character.species}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Género:</p>
+                    <span>{{character.gender}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Origen:</p>
+                    <span>{{character.origin.name}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Última localización:</p>
+                    <span>{{character.location?.name}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Creado:</p>
+                    <span>{{character.created | date}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <p>Episodios:</p>
+                    <span>{{character.episode?.length}}</span>
+                </div>
+                <div class="infoCharacter">
+                    <div class="infoCharacter__list">
+                        <button
+                            class="infoCharacter__list--episode"
+                            *ngFor="let episode of character.episode"
+                        >
+                            {{episode.split('/').pop()}}
+                        </button>
+                    </div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </section>
+</main>

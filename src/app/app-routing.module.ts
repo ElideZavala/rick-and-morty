@@ -8,10 +8,6 @@ const routes: Routes = [
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: '**',
-    redirectTo: '/dashboard',
-  },
-  {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',

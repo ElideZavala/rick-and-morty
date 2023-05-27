@@ -6,6 +6,7 @@ import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { MaterialModule } from '../modules/material/material.module';
 import { CreatedDatePipe } from '../../pipes/created-date.pipe';
 import { DashboardRoutingModule } from './dashboard.routing';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 
 
@@ -14,7 +15,8 @@ import { DashboardRoutingModule } from './dashboard.routing';
     ListCharactersComponent,
     CharacterComponent,
     DashboardComponent,
-    CreatedDatePipe
+    CreatedDatePipe,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
