@@ -13,6 +13,8 @@
 ### Deploy del proyecto
 ```
 npm install
+```
+```
 ng serve -o
 ```
 
